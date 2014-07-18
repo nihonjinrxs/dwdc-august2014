@@ -1,0 +1,138 @@
+---
+title: "SQL, the Sequel : Data Wranglers DC : August 2014 Meetup"
+output:
+  knitrBootstrap::bootstrap_document:
+    title: "SQL, the Sequel : Data Wranglers DC : August 2014 Meetup"
+    theme: flatly
+    highlight: github
+    theme.chooser: TRUE
+    highlight.chooser: TRUE
+---
+
+SQL, the Sequel : Data Wranglers DC : August 2014 Meetup
+========================================================
+**Author:**  [Ryan B. Harvey](http://datascientist.guru)
+
+**Created:** 2014-07-17 / **Last Updated:** 2014-07-18
+
+**Contents:**
+- The `sqldf` package: SQL on dataframes in R
+- Loading some test data
+- Querying and subsetting that test data
+- Example of a complex query
+
+**Package Dependencies:**
+- **[sqldf](http://cran.r-project.org/package=sqldf):** Perform SQL Selects on R Data Frames. R package version 0.4-7.1. Author: G. Grothendieck (2014) [more info & source](https://code.google.com/p/sqldf/)
+
+**References:**
+- This RPub was created for a talk to the Data Wranglers DC meetup group on August 6, 2014.
+  - Talk information: [http://www.meetup.com/Data-Wranglers-DC/events/177269432/](http://www.meetup.com/Data-Wranglers-DC/events/177269432/)
+  - This is only a portion of the talk, which included database information, SQL code, and an iJulia notebook too.
+  - My code, slides and the sample data are all available on Github. [https://github.com/nihonjinrxs/dwdc-august2014](https://github.com/nihonjinrxs/dwdc-august2014)
+
+The `sqldf` package is an R package that creates tables in a local SQLite database, runs the requested SQL query on those tables, and then drops the tables from the SQLite database.  Although this can be slower than subsetting a data frame directly, in cases where the data frame is very complex and conditions get difficult to parse, SQL can provide a straightforward, declarative way of requesting a particular data subset.
+
+If the `sqldf` package doesn't exist in your environment, install the package.  Once you have it, require it.
+```{r}
+# install.packages("sqldf")
+require(sqldf)
+```
+
+Note that the `sqldf` package will use SQLite as a default, unless a different database driver package is currently loaded (i.e., If we would like `sqldf` to use a different database product, we can tell it which driver to use by specifying that in the options statement.
+```{r}
+# options(sqldf.driver = "SQLite")
+```
+
+For example, if you wanted to use some of the functions available in PostgreSQL, you could use that as the driver for `sqldf` by loading the `RPosgreSQL` package first.  More details on this are at [How does one use sqldf with PosrgreSQL?](https://code.google.com/p/sqldf/#12._How_does_one_use_sqldf_with_PostgreSQL?).
+
+Load some data to work with
+---------------------------
+For this example, we'll use the [Basic Business Licenses data](http://data.dc.gov/Main_DataCatalog.aspx?id=1520) from the [DC government open data site](http://data.dc.gov/).
+
+The data is available as a zip file, so we'll download it if it's not already available, and then unzip it if it hasn't been already.
+
+```{r}
+url = "http://data.octo.dc.gov/feeds/bbl/bbl_current_csv.zip"
+data_dir = "../data/"
+current_dir = getwd()
+setwd(data_dir)
+local_zipped = "bbl_current_csv.zip"
+local_data = "bbl_current_csv.csv"
+if (!(file.exists(local_data) && file.exists(local_zipped))) {
+  download.file(url, destfile=local_zipped, method="curl")
+  fileDownloadedDate <- date()
+  paste("File downloaded at ", fileDownloadedDate)
+}
+if (!file.exists(local_data)) {
+  unzip(local_zipped)
+}
+bbl <- read.csv(local_data)
+setwd(current_dir)
+```
+
+Now that we have the data frame `bbl`, let's take a look at what's in it.
+
+```{r}
+head(bbl)
+summary(bbl)
+```
+
+SQL Queries on Data Frames
+--------------------------
+
+Now, let's do a few queries on it just to get the hang of using `sqldf`.
+
+```{r}
+sqldf("select * from bbl where BUSINESSIMPROVEMENTDISTRICT = 'DOWNTOWN BID'")
+```
+
+```{r}
+sqldf("select * from bbl where WARD = 6")
+```
+
+The `sqldf()` function returns a data frame, so we can store it in another variable for use in a plot, for example.
+
+```{r}
+ward6 <- sqldf("select LICENSECATEGORY, count(*) as LICENSECOUNT from bbl where WARD = 6 group by LICENSECATEGORY")
+ward6
+```
+
+```{r fig.width=10, fig.height=6}
+par(las=2, mar=c(2, 12, 2, 2)) # Labels perpendicular to axis, wide left margin
+barplot(ward6$LICENSECOUNT, names.arg=ward6$LICENSECATEGORY, horiz=TRUE)
+```
+
+Next, let's try to plot a cross-tab of license status vs. license category.
+
+```{r}
+ward6detail <- sqldf("select LICENSECATEGORY, LICENSESTATUS, BBL_LICENSE_FACT_ID from bbl where WARD = 6 order by LICENSECATEGORY, LICENSESTATUS")
+head(ward6detail)
+ward6xtabs <- xtabs(~LICENSESTATUS+LICENSECATEGORY, data=ward6detail)
+```
+
+```{r fig.width=10, fig.height=6}
+par(las=2, mar=c(2, 12, 2, 2)) # Labels perpendicular to axis, wide left margin
+barplot(ward6xtabs, horiz=TRUE, legend=rownames(ward6xtabs))
+```
+
+Example of a More Complex Query
+-------------------------------
+```{r}
+query <- 
+"select BBL_LICENSE_FACT_ID as bbl_id, 
+LATITUDE as lat, LONGITUDE as lon, 
+WARD as ward, LICENSESTATUS as status, 
+BUSINESSIMPROVEMENTDISTRICT as bid
+from bbl
+where LICENSESTATUS != 'CANCELLED'
+and WARD != 'NA' 
+and LATITUDE <> 0 
+AND LONGITUDE <> 0"
+
+results <- sqldf(query)
+```
+
+```{r fig.width=12, fig.height=24}
+library(ggplot2)
+qplot(lon, lat, data=results, facets=ward~status, col=bid)
+```

@@ -1,7 +1,7 @@
 # SQL, the Sequel
 ##### SQL on Data Frames and Advanced SQL in a Database
 
-This repository contains materials for [my talk at the Data Wranglers DC meetup on August 6, 2014](), which is a follow-on to [my talk at the Data Wranglers DC meetup on June 4, 2014](http://www.meetup.com/Data-Wranglers-DC/events/171768162/).  Materials for that talk are in the GitHub Repo [nihonjinrxs/dwdc-june2014](http://www.github.com/nihonjinrxs/dwdc-june2014).
+This repository contains materials for [my talk at the Data Wranglers DC meetup on August 6, 2014](http://www.meetup.com/Data-Wranglers-DC/events/177269432/), which is a follow-on to [my talk at the Data Wranglers DC meetup on June 4, 2014](http://www.meetup.com/Data-Wranglers-DC/events/171768162/).  Materials for the prior talk are in the GitHub Repo [nihonjinrxs/dwdc-june2014](http://www.github.com/nihonjinrxs/dwdc-june2014).
 
 ### Contents
 The talk consists of two major directions:
@@ -10,7 +10,7 @@ The talk consists of two major directions:
 
 Folders are as follows (content coming soon... this is a work in progress!)
 - A slide deck (`./slides`) in Apple Keynote, [PDF](#) and [HTML](#) formats
-- An RMarkdown document (`./R`), [published on RPubs](#), that demonstrates using `sqldf` in R to perform SQL queries on data frames as if they are tables
+- An RMarkdown document (`./R`), [published on RPubs](http://rpubs.com/ryanbharvey/dwdc-august2014), that demonstrates using `sqldf` in R to perform SQL queries on data frames as if they are tables
 - An iJulia notebook document (`./julia`) that demonstrates using `sqldf` from the `SQLite.jl` package in Julia to perform SQL queries on data frames as if they are tables
 - A set of SQL scripts (`./sql`) that create the local PostgreSQL database objects for the second direction
 
