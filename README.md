@@ -1,5 +1,5 @@
 # SQL, the Sequel
-##### SQL on Data Frames and Advanced SQL in a Database
+##### More SQL in the Database, and SQL in Data Science Contexts (i.e. SQL on DataFrames)
 
 This repository contains materials for [my talk at the Data Wranglers DC meetup on August 6, 2014](http://www.meetup.com/Data-Wranglers-DC/events/177269432/), which is a follow-on to [my talk at the Data Wranglers DC meetup on June 4, 2014](http://www.meetup.com/Data-Wranglers-DC/events/171768162/).  Materials for the prior talk are in the GitHub Repo [nihonjinrxs/dwdc-june2014](http://www.github.com/nihonjinrxs/dwdc-june2014).
 
