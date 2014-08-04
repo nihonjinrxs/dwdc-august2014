@@ -11,8 +11,8 @@ The talk consists of two major directions:
 Folders are as follows (content coming soon... this is a work in progress!)
 - A slide deck (`./slides`) in Apple Keynote, [PDF](http://nihonjinrxs.github.io/dwdc-august2014/DWDC-August2014-RyanHarvey.pdf) and [HTML](http://nihonjinrxs.github.io/dwdc-august2014) formats
 - An RMarkdown document (`./R`), [published on RPubs](http://rpubs.com/ryanbharvey/dwdc-august2014), that demonstrates using `sqldf` in R to perform SQL queries on data frames as if they are tables
-- A Python notebook (./python) that demonstrates using `sqldf` from the `pandasql` package to perform SQL queries on Pandas DataFrame objects as if they are tables
-- An iJulia notebook document (`./julia`) that demonstrates using `sqldf` from the `SQLite.jl` package in Julia to perform SQL queries on data frames as if they are tables (in progress, and not working yet)
+- An IPython notebook (./python) that demonstrates using `sqldf` from the `pandasql` package to perform SQL queries on Pandas DataFrame objects as if they are tables
+- An IJulia notebook document (`./julia`) that demonstrates using `sqldf` from the `SQLite.jl` package in Julia to perform SQL queries on data frames as if they are tables (in progress, and not working yet)
 - A set of SQL scripts (`./sql`) that create the local PostgreSQL database objects demonstrating creation and use of views, custom functions and indexes for use in data analysis
 
 ### Where do I start?
