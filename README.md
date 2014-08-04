@@ -9,7 +9,7 @@ The talk consists of two major directions:
 - Using more advanced SQL techniques in a database system (examples in PostgreSQL) to script auto-updating computations
 
 Folders are as follows (content coming soon... this is a work in progress!)
-- A slide deck (`./slides`) in Apple Keynote, [PDF](#) and [HTML](#) formats
+- A slide deck (`./slides`) in Apple Keynote, [PDF](http://nihonjinrxs.github.io/dwdc-august2014/DWDC-August2014-RyanHarvey.pdf) and [HTML](http://nihonjinrxs.github.io/dwdc-august2014) formats
 - An RMarkdown document (`./R`), [published on RPubs](http://rpubs.com/ryanbharvey/dwdc-august2014), that demonstrates using `sqldf` in R to perform SQL queries on data frames as if they are tables
 - An iJulia notebook document (`./julia`) that demonstrates using `sqldf` from the `SQLite.jl` package in Julia to perform SQL queries on data frames as if they are tables
 - A set of SQL scripts (`./sql`) that create the local PostgreSQL database objects for the second direction
