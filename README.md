@@ -8,7 +8,7 @@ The talk consists of two major directions:
 - Using more advanced SQL techniques in a database system (examples in PostgreSQL) to script auto-updating computations
 - Using SQL on data frames in R and in Python (also maybe Julia?)
 
-Folders are as follows (content coming soon... this is a work in progress!)
+Folders are as follows:
 - A slide deck (`./slides`) in Apple Keynote, [PDF](http://nihonjinrxs.github.io/dwdc-august2014/DWDC-August2014-RyanHarvey.pdf) and [HTML](http://nihonjinrxs.github.io/dwdc-august2014) formats
 - A set of SQL scripts (`./sql`) that create the local PostgreSQL database objects demonstrating creation and use of views, custom functions and indexes for use in data analysis
 - An RMarkdown document (`./R`), [published on RPubs](http://rpubs.com/ryanbharvey/dwdc-august2014), that demonstrates using `sqldf` in R to perform SQL queries on data frames as if they are tables
