@@ -27,7 +27,7 @@ SQL, the Sequel : Data Wranglers DC : August 2014 Meetup
 **References:**
 - This RPub was created for a talk to the Data Wranglers DC meetup group on August 6, 2014.
   - Talk information: [http://www.meetup.com/Data-Wranglers-DC/events/177269432/](http://www.meetup.com/Data-Wranglers-DC/events/177269432/)
-  - This is only a portion of the talk, which included database information, SQL code, and an iJulia notebook too.
+  - This is only a portion of the talk, which included database information, SQL code, an [IPython notebook](http://nbviewer.ipython.org/github/nihonjinrxs/dwdc-august2014/blob/master/python/sqldf_examples_python.ipynb), and possibly an IJulia notebook too.
   - My code, slides and the sample data are all available on Github. [https://github.com/nihonjinrxs/dwdc-august2014](https://github.com/nihonjinrxs/dwdc-august2014)
 
 The `sqldf` package is an R package that creates tables in a local SQLite database, runs the requested SQL query on those tables, and then drops the tables from the SQLite database.  Although this can be slower than subsetting a data frame directly, in cases where the data frame is very complex and conditions get difficult to parse, SQL can provide a straightforward, declarative way of requesting a particular data subset.
