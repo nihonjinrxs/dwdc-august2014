@@ -1,4 +1,19 @@
-﻿create or replace function dwdc.analysis_results_for_gender(param_gender character(1))
+﻿/***************************************
+  Data Wranglers DC : August 2014 Meetup
+  SQL, the Sequel
+  **************************************
+  Author:  Ryan B. Harvey
+  Created: 2014-08-02
+  **************************************
+  This script creates a custom SQL
+  function to get all rows from the 
+  analysis query where the patient is 
+  od the specified gender from the data 
+  imported by the script:
+    import_revised.sql
+****************************************/
+
+create or replace function dwdc.analysis_results_for_gender(param_gender character(1))
   returns table (id integer, first_name text, growth_rate double precision) as
 $BODY$
    WITH all_visits_and_ids(id, first_name, dob, visit_date, height) AS (

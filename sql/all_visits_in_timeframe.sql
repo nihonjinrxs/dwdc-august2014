@@ -1,4 +1,18 @@
-﻿create or replace function dwdc.all_visits_in_timeframe(
+﻿/***************************************
+  Data Wranglers DC : August 2014 Meetup
+  SQL, the Sequel
+  **************************************
+  Author:  Ryan B. Harvey
+  Created: 2014-08-02
+  **************************************
+  This script creates a custom SQL
+  table function to get all rows between
+  two specified dates from the data 
+  imported by the script:
+    import_revised.sql
+****************************************/
+
+create or replace function dwdc.all_visits_in_timeframe(
   param_start_date date, 
   param_end_date date
 ) returns table (

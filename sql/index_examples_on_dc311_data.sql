@@ -1,7 +1,18 @@
-﻿/* We need more data!!!  Let's use DC311 data.
- * You can find scripts to build this database at:
- *   https://github.com/nihonjinrxs/dc311
- */
+﻿/***************************************
+  Data Wranglers DC : August 2014 Meetup
+  SQL, the Sequel
+  **************************************
+  Author:  Ryan B. Harvey
+  Created: 2014-08-04
+  **************************************
+  This script demonstrates performance
+  tuning using the EXPLAIN keyword and 
+  indexes on columns for the data 
+  imported via code in the GitHub repo:
+    https://www.github.com/nihonjinrxs/dc311
+****************************************/
+
+/* We need more data!!!  Let's use DC311 data. */
 
 select count(*) from dc311.requests;
 
